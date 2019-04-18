@@ -4,17 +4,16 @@ import com.dat.datdoc.service.DocumentProcessService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 @SpringBootApplication
-public class DatdocApplication {
+public class DatDocApplication {
 
     public static void main(String[] args) throws IOException {
-        SpringApplication.run(DatdocApplication.class, args);
+        SpringApplication.run(DatDocApplication.class, args);
 
-        System.out.println("Iniciando processamento...");
-        DocumentProcessService.processDocs("/file/in");
-        System.out.println("Fim de processamento!");
+        System.out.println("Starting the document read!");
+        DocumentProcessService.processDocs("/doc/in");
+        System.out.println("Process finished!");
     }
 }
