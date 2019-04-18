@@ -6,8 +6,10 @@ import com.dat.datdoc.model.SaleItem;
 import com.dat.datdoc.model.Salesman;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
+/**
+ * @author Gabriel Fernandes Garcia
+ */
 public class SalesmanService {
 
     private static final String WORST_SALESMAN = "Vendedor que menos vendeu: ";

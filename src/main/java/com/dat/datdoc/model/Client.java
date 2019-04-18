@@ -1,5 +1,8 @@
 package com.dat.datdoc.model;
 
+/**
+ * @author Gabriel Fernandes Garcia
+ */
 public class Client {
 
     public static final String CLIENT_CODE = "002";

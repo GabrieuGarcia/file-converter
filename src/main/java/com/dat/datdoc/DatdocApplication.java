@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;
 
+/**
+ * @author Gabriel Fernandes Garcia
+ */
 @SpringBootApplication
 public class DatDocApplication {
 

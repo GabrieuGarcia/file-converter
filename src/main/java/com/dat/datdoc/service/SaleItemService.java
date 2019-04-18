@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * @author Gabriel Fernandes Garcia
+ */
 public class SaleItemService {
 
     private static final String ITENS_ON_SALE_SPLITTER = ",";

@@ -2,6 +2,9 @@ package com.dat.datdoc.model;
 
 import java.util.List;
 
+/**
+ * @author Gabriel Fernandes Garcia
+ */
 public class DocumentRead {
 
     private String nameFile;

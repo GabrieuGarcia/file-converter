@@ -3,6 +3,9 @@ package com.dat.datdoc.service;
 import com.dat.datdoc.model.Client;
 import com.dat.datdoc.model.DocumentRead;
 
+/**
+ * @author Gabriel Fernandes Garcia
+ */
 public class ClientService {
 
     private final DocumentRead documentRead;

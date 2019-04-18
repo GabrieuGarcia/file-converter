@@ -2,6 +2,9 @@ package com.dat.datdoc.model;
 
 import java.math.BigDecimal;
 
+/**
+ * @author Gabriel Fernandes Garcia
+ */
 public class Salesman {
 
     public static final String SALESMAN_CODE = "001";

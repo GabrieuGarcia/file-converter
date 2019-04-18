@@ -5,6 +5,9 @@ import com.dat.datdoc.model.*;
 
 import java.io.*;
 
+/**
+ * @author Gabriel Fernandes Garcia
+ */
 public class DocumentReadService {
 
     private static final String CHARACTER_DIVISOR = "ç";

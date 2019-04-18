@@ -6,6 +6,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Gabriel Fernandes Garcia
+ */
 public class DocumentProcessService {
 
     private static final String DAT_DOCUMENT = "dat";

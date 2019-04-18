@@ -6,6 +6,9 @@ import com.dat.datdoc.model.SaleItem;
 
 import java.math.BigDecimal;
 
+/**
+ * @author Gabriel Fernandes Garcia
+ */
 public class SaleService {
 
     private static final String HIGHEST_SALE = "Maior venda: ";

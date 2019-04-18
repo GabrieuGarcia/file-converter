@@ -2,6 +2,9 @@ package com.dat.datdoc.model;
 
 import java.util.List;
 
+/**
+ * @author Gabriel Fernandes Garcia
+ */
 public class Sale {
 
     public static final String SALE_CODE = "003";
