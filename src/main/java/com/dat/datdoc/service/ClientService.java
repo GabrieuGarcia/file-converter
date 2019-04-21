@@ -14,15 +14,11 @@ public class ClientService {
         this.documentRead = documentRead;
     }
 
-    public void setClient(String[] infos) {
+    public void setClient(DocumentRead documentRead, String[] infos) {
         Client cliente = new Client();
         cliente.setCnpj(infos[1]);
         cliente.setName(infos[2]);
         cliente.setBusinessActivity(infos[3]);
-        this.addToClientList(cliente);
-    }
-
-    public void addToClientList(Client client) {
-        documentRead.addCliente(client);
+        documentRead.addCliente(cliente);
     }
 }

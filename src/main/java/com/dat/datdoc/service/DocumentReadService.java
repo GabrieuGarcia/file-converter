@@ -27,21 +27,22 @@ public class DocumentReadService {
      * @param bufferedReader document convert in to bufferedReader.
      * @throws IOException exception.
      */
-    public void validateDocInfos(BufferedReader bufferedReader) throws IOException {
-        String line = "";
+    public void validateDocInfos(DocumentRead documentRead, BufferedReader bufferedReader) throws IOException {
 
-        while ((line = bufferedReader.readLine()) != null) {
+        String line = bufferedReader.readLine();
+
+        while (line != null) {
 
             String[] infos = line.split(CHARACTER_DIVISOR);
 
             if (infos[0].equals(Salesman.SALESMAN_CODE)) {
-                salesmanService.setSalesman(infos);
+                salesmanService.setSalesman(documentRead, infos);
 
             } else if (infos[0].equals(Client.CLIENT_CODE)) {
-                clientService.setClient(infos);
+                clientService.setClient(documentRead, infos);
 
             } else if (infos[0].equals(Sale.SALE_CODE)) {
-                saleService.setSale(infos);
+                saleService.setSale(documentRead,infos);
             }
         }
     }
@@ -53,7 +54,8 @@ public class DocumentReadService {
      * @throws IOException exception.
      */
     public void processOutDocumentRead(DocumentRead documentRead) throws IOException {
-        File documentOut = new File("/data/out/" + documentRead.getNameFile() + DOCUMENT_FORMAT_OUT);
+        File documentOut = new File(System.getProperty("user.home") + "/data/out/" +
+                documentRead.getNameDocument() + DOCUMENT_FORMAT_OUT);
         FileWriter fileWriter = new FileWriter(documentOut);
         PrintWriter printDocumentOut = new PrintWriter(fileWriter);
 

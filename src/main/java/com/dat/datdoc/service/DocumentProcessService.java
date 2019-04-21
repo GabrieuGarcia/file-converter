@@ -5,6 +5,7 @@ import com.dat.datdoc.model.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Gabriel Fernandes Garcia
@@ -25,13 +26,19 @@ public class DocumentProcessService {
      * @throws IOException exception.
      */
     public static void processDocs(String docPath) throws IOException {
+
         List<File> docsFoundOnPath = getDatDocs(docPath);
+        documentReadList = new ArrayList<DocumentRead>();
+        documentReadService = new DocumentReadService();
 
         for(File docOnPath : docsFoundOnPath){
 
+            DocumentRead documentRead = new DocumentRead(docOnPath.getName());
             FileReader fileReader = new FileReader(docOnPath);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-            documentReadService.validateDocInfos(bufferedReader);
+
+            documentReadService.validateDocInfos(documentRead , bufferedReader);
+            documentReadList.add(documentRead);
             finishProcess();
         }
     }
@@ -40,7 +47,7 @@ public class DocumentProcessService {
         File path = new File(docPath);
         List<File> docsDatOnPath = new ArrayList<File>();
 
-        for(File doc: path.listFiles()){
+        for(File doc: Objects.requireNonNull(path.listFiles())){
             String docName = doc.getName();
             String docExtension = docName.substring(docName.lastIndexOf(".") + 1);
 
@@ -52,7 +59,7 @@ public class DocumentProcessService {
     }
 
     private static void finishProcess() throws IOException{
-        File dirOut = new File(DAT_DOCUMENT_PATH_OUT);
+        File dirOut = new File(System.getProperty("user.home") + DAT_DOCUMENT_PATH_OUT);
         if(!dirOut.exists()){
             dirOut.mkdir();
         }

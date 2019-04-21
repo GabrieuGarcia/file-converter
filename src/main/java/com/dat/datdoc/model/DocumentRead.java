@@ -1,5 +1,6 @@
 package com.dat.datdoc.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,10 +8,17 @@ import java.util.List;
  */
 public class DocumentRead {
 
-    private String nameFile;
+    private String nameDocument;
     private List<Client> clientsList;
     private List<Sale> saleList;
     private List<Salesman> salesmanList;
+
+    public DocumentRead(String nameDocument) {
+        this.salesmanList = new ArrayList<>();
+        this.clientsList = new ArrayList<>();
+        this.saleList = new ArrayList<>();
+        this.nameDocument = nameDocument;
+    }
 
     public void addSalesman(Salesman salesman){
         salesmanList.add(salesman);
@@ -24,12 +32,12 @@ public class DocumentRead {
         saleList.add(sale);
     }
 
-    public String getNameFile() {
-        return nameFile;
+    public String getNameDocument() {
+        return nameDocument;
     }
 
-    public void setNameFile(String nameFile) {
-        this.nameFile = nameFile;
+    public void setNameDocument(String nameDocument) {
+        this.nameDocument = nameDocument;
     }
 
     public List<Client> getClientsList() {

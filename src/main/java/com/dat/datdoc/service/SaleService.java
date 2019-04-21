@@ -50,15 +50,11 @@ public class SaleService {
      *
      * @param infos infos comming from the document.
      */
-    public void setSale(String[] infos) {
+    public void setSale(DocumentRead documentRead, String[] infos) {
         Sale sale = new Sale();
         sale.setId(infos[1]);
         saleItemService.splitItemsOnSale(infos[2]);
         sale.setSalesmanName(infos[3]);
-        this.addToSalesList(sale);
-    }
-
-    private void addToSalesList(Sale sale){
         documentRead.addSales(sale);
     }
 }

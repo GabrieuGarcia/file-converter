@@ -55,15 +55,11 @@ public class SalesmanService {
      *
      * @param infos infos comming from the document.
      */
-    public void setSalesman(String[] infos) {
+    public void setSalesman(DocumentRead documentRead, String[] infos) {
             Salesman salesman = new Salesman();
             salesman.setCpf(infos[1]);
             salesman.setName(infos[2]);
             salesman.setSalary(new BigDecimal(infos[3]));
-            this.addToSalesmanList(salesman);
-    }
-
-    private void addToSalesmanList(Salesman salesman){
-        documentRead.addSalesman(salesman);
+            documentRead.addSalesman(salesman);
     }
 }

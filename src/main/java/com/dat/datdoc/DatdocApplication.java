@@ -16,7 +16,7 @@ public class DatDocApplication {
         SpringApplication.run(DatDocApplication.class, args);
 
         System.out.println("Starting the document read!");
-        DocumentProcessService.processDocs("/doc/in");
+        DocumentProcessService.processDocs(System.getProperty("user.home") + "/data/in");
         System.out.println("Process finished!");
     }
 }
