@@ -10,77 +10,24 @@ import java.io.*;
  */
 public class DocumentReadService {
 
-    private static final String CHARACTER_DIVISOR = "ç";
     private static final String CLIENTS_QUANTITY = "Quantidade de Clientes: ";
     private static final String SALES_QUANTITY = "Quantidade de vendedores: ";
-    private static final String DOCUMENT_FORMAT_OUT = ".done.dat";
+    private static final String ID_HIGHEST_SALE = "ID da Venda de valor mais alto: ";
+    private static final String WORST_SALESMAN = "Nome do Vendedor que menos vendeu: ";
+    private static final String DAT_DOCUMENT_PATH_OUT = "/data/out/";
+    private static final String DAT_DOCUMENT_NAME_FORMAT_OUT = ".done.dat";
 
-    private static DocumentRead documentRead;
-    private static SalesmanService salesmanService;
-    private static ClientService clientService;
-    private static SaleService saleService;
-    private DocumentProcessService documentProcessService;
+    public void documentFormatOut(DocumentRead documentRead) throws IOException {
+        File fileSaida = new File(System.getProperty("user.home") + DAT_DOCUMENT_PATH_OUT + documentRead.getNameDocument() + DAT_DOCUMENT_NAME_FORMAT_OUT);
+        FileWriter fileWriter = new FileWriter(fileSaida);
+        PrintWriter gravarArq = new PrintWriter(fileWriter);
 
-    /**
-     * Method responsible for validating if it's Salesman, Client or Sale.
-     *
-     * @param bufferedReader document convert in to bufferedReader.
-     * @throws IOException exception.
-     */
-    public void validateDocInfos(DocumentRead documentRead, BufferedReader bufferedReader) throws IOException {
-
-        String line = bufferedReader.readLine();
-
-        while (line != null) {
-
-            String[] infos = line.split(CHARACTER_DIVISOR);
-
-            if (infos[0].equals(Salesman.SALESMAN_CODE)) {
-                salesmanService.setSalesman(documentRead, infos);
-
-            } else if (infos[0].equals(Client.CLIENT_CODE)) {
-                clientService.setClient(documentRead, infos);
-
-            } else if (infos[0].equals(Sale.SALE_CODE)) {
-                saleService.setSale(documentRead,infos);
-            }
-        }
-    }
-
-    /**
-     * Method responsable for processing the document in to format out.
-     *
-     * @param documentRead document that was read.
-     * @throws IOException exception.
-     */
-    public void processOutDocumentRead(DocumentRead documentRead) throws IOException {
-        File documentOut = new File(System.getProperty("user.home") + "/data/out/" +
-                documentRead.getNameDocument() + DOCUMENT_FORMAT_OUT);
-        FileWriter fileWriter = new FileWriter(documentOut);
-        PrintWriter printDocumentOut = new PrintWriter(fileWriter);
-
-        printDocumentOut.println(getQuantityClients(documentRead));
-        printDocumentOut.println(getQuantitySalesman(documentRead));
-        printDocumentOut.println(getIdHighestSale(documentRead));
-        printDocumentOut.println(getWorstSalesman(documentRead));
+        gravarArq.println(CLIENTS_QUANTITY + documentRead.getQtdClients());
+        gravarArq.println(SALES_QUANTITY + documentRead.getQtdSalesman());
+        gravarArq.println(ID_HIGHEST_SALE + documentRead.getIdHighestSale());
+        gravarArq.println(WORST_SALESMAN + documentRead.getWorstSalesman());
 
         fileWriter.close();
-    }
-
-    private String getQuantityClients(DocumentRead documentRead) {
-        return CLIENTS_QUANTITY + documentRead.getClientsList().size();
-    }
-
-    private String getQuantitySalesman(DocumentRead documentRead) {
-        return SALES_QUANTITY + documentRead.getSalesmanList().size();
-    }
-
-    private String getIdHighestSale(DocumentRead documentRead) {
-        return saleService.getIdHighestSale(documentRead);
-    }
-
-    private String getWorstSalesman(DocumentRead documentRead) {
-        return salesmanService.getWorstSalesman(documentRead);
     }
 
 }
