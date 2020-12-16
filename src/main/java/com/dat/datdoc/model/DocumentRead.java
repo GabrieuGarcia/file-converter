@@ -1,5 +1,7 @@
 package com.dat.datdoc.model;
 
+import org.springframework.stereotype.Component;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.List;
 /**
  * @author Gabriel Fernandes Garcia
  */
+@Component
 public class DocumentRead {
 
     private static final String WORST_SALESMAN = "Vendedor que menos vendeu: ";
@@ -16,13 +19,6 @@ public class DocumentRead {
     private List<Client> clientsList;
     private List<Sale> saleList;
     private List<Salesman> salesmanList;
-
-    public DocumentRead(String nameDocument) {
-        this.salesmanList = new ArrayList<>();
-        this.clientsList = new ArrayList<>();
-        this.saleList = new ArrayList<>();
-        this.nameDocument = nameDocument;
-    }
 
     public int getQtdClients(){
         return clientsList.size();

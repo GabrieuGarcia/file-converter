@@ -3,12 +3,14 @@ package com.dat.datdoc.service;
 import com.dat.datdoc.model.DocumentRead;
 import com.dat.datdoc.model.Sale;
 import com.dat.datdoc.model.SaleItem;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
 /**
  * @author Gabriel Fernandes Garcia
  */
+@Service
 public class SaleService {
 
     private static final String HIGHEST_SALE = "Maior venda: ";

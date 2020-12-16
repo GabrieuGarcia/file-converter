@@ -1,6 +1,7 @@
 package com.dat.datdoc.service;
 
 import com.dat.datdoc.model.SaleItem;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.Objects;
 /**
  * @author Gabriel Fernandes Garcia
  */
+@Service
 public class SaleItemService {
 
     private static final String ITENS_ON_SALE_SPLITTER = ",";

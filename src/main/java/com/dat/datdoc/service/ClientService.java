@@ -2,17 +2,17 @@ package com.dat.datdoc.service;
 
 import com.dat.datdoc.model.Client;
 import com.dat.datdoc.model.DocumentRead;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * @author Gabriel Fernandes Garcia
  */
+@Service
 public class ClientService {
 
-    private final DocumentRead documentRead;
-
-    public ClientService(DocumentRead documentRead) {
-        this.documentRead = documentRead;
-    }
+    @Autowired
+    private DocumentRead documentRead;
 
     public void setClient(String[] infos) {
         Client client = new Client();
