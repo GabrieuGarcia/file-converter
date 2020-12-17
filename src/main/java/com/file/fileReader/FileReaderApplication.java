@@ -1,26 +1,22 @@
-package com.dat.datdoc;
+package com.file.fileReader;
 
-import com.dat.datdoc.service.*;
+import com.file.fileReader.service.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;
 
-/**
- * @author Gabriel Fernandes Garcia
- */
 @SpringBootApplication
-public class DatdocApplication {
+public class FileReaderApplication {
 
     public static void main(String[] args) throws IOException {
-        SpringApplication.run(DatdocApplication.class, args);
+        SpringApplication.run(FileReaderApplication.class, args);
 
-        System.out.println("Starting the document read!");
+        System.out.println("Starting the file read!");
         InputFileService inputFileService = buildDocumentProcessService();
-        inputFileService.processDocs();
+        inputFileService.processFiles();
         System.out.println("Process finished!");
     }
-
 
     private static InputFileService buildDocumentProcessService() {
         return new InputFileService(new SalesmanService(), new ClientService(), new SaleService(new SaleItemService()));

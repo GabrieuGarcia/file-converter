@@ -1,10 +1,7 @@
-package com.dat.datdoc.model;
+package com.file.fileReader.model;
 
 import java.math.BigDecimal;
 
-/**
- * @author Gabriel Fernandes Garcia
- */
 public class SaleItem {
 
     private String id;

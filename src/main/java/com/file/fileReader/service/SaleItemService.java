@@ -1,17 +1,12 @@
-package com.dat.datdoc.service;
+package com.file.fileReader.service;
 
-import com.dat.datdoc.model.Sale;
-import com.dat.datdoc.model.SaleItem;
+import com.file.fileReader.model.SaleItem;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-/**
- * @author Gabriel Fernandes Garcia
- */
 @Service
 public class SaleItemService {
 
@@ -26,7 +21,6 @@ public class SaleItemService {
             for(String saleItem : sItem) {
 
                 String[] saleItemDivided = saleItem.split("-");
-
                 SaleItem saleItem1 = new SaleItem();
                 saleItem1.setId(saleItemDivided[0]);
                 saleItem1.setQuantity(Integer.parseInt(saleItemDivided[1]));
@@ -37,5 +31,4 @@ public class SaleItemService {
         }
         return saleItemList;
     }
-
 }

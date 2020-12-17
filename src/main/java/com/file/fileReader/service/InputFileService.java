@@ -1,6 +1,8 @@
-package com.dat.datdoc.service;
+package com.file.fileReader.service;
 
-import com.dat.datdoc.model.*;
+import com.file.fileReader.model.Client;
+import com.file.fileReader.model.Sale;
+import com.file.fileReader.model.Salesman;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -8,9 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * @author Gabriel Fernandes Garcia
- */
 @Service
 public class InputFileService {
 
@@ -29,7 +28,7 @@ public class InputFileService {
         this.saleService = saleService;
     }
 
-    public void processDocs() throws IOException {
+    public void processFiles() throws IOException {
 
         String docPath = System.getProperty("user.home") + "/data/in";
         File[] files = new File(docPath).listFiles();
@@ -41,11 +40,11 @@ public class InputFileService {
         for (File file : files) {
             fileName = file.getName();
             Scanner fileScanner = new Scanner(new FileReader(file));
-            buildDocInfos(fileScanner);
+            buildFileInfos(fileScanner);
         }
     }
 
-    private void buildDocInfos(Scanner fileScanner) throws FileNotFoundException {
+    private void buildFileInfos(Scanner fileScanner) throws FileNotFoundException {
 
         while (fileScanner.hasNextLine()) {
             String line = fileScanner.nextLine();
@@ -55,38 +54,36 @@ public class InputFileService {
                 Salesman salesman = salesmanService.buildSalesmanList(fields);
                 salesmanList.add(salesman);
 
-            }else if(fields[0].equals(Client.CLIENT_CODE)){
-                Client client = clientService.setClient(fields);
+            } else if(fields[0].equals(Client.CLIENT_CODE)){
+                Client client = clientService.buildClient(fields);
                 clientList.add(client);
 
-            }else if(fields[0].equals(Sale.SALE_CODE)){
+            } else if(fields[0].equals(Sale.SALE_CODE)){
                 Sale sale = saleService.buildSales(fields);
                 saleList.add(sale);
             }
         }
-
-        buildOutputDocument();
+        buildOutputFile(salesmanList, saleList, clientList, fileName);
     }
 
-    private void buildOutputDocument() throws FileNotFoundException {
+    public void buildOutputFile(List<Salesman> salesmanList, List<Sale> saleList, List<Client> clientList, String fileName) throws FileNotFoundException {
 
         String numberOfClients = String.valueOf(clientList.size());
         String numberOfSalesman = String.valueOf(salesmanList.size());
-        String highestSaleId = salesmanService.getIdHighestSale(saleList);
+        String highestSaleId = saleService.getIdHighestSale(saleList);
         String worstSalesman = salesmanService.getWorstSalesman(saleList, salesmanList);
 
-        writeNewFile(numberOfClients, numberOfSalesman, highestSaleId, worstSalesman, fileName);
+        writeOutputFile(numberOfClients, numberOfSalesman, highestSaleId, worstSalesman, fileName);
     }
 
-    private static void writeNewFile(String numberOfClients, String numberOfSalesman, String highestSale, String worstSalesman, String fileName) throws FileNotFoundException{
+    private void writeOutputFile(String numberOfClients, String numberOfSalesman, String highestSale, String worstSalesman, String fileName) throws FileNotFoundException {
 
-        PrintWriter writer = new PrintWriter(System.getProperty("user.home")+File.separator+"data"+File.separator+"out"+File.separator+"out_"+ fileName);
+        PrintWriter writer = new PrintWriter(System.getProperty("user.home")+ File.separator+"data"+File.separator+"out"+File.separator+"out_"+ fileName);
 
         writer.println("Quantidade de clientes: " + numberOfClients);
         writer.println("Quantidade de vendedores: " + numberOfSalesman);
         writer.println("Id da venda mais cara: " + highestSale);
         writer.println("Pior vendedor: " + worstSalesman);
         writer.close();
-
     }
 }

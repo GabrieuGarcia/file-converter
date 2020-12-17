@@ -1,4 +1,4 @@
-package com.dat.datdoc.model;
+package com.file.fileReader.model;
 
 import java.util.List;
 

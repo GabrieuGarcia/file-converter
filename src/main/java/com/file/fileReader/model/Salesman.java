@@ -1,12 +1,7 @@
-package com.dat.datdoc.model;
-
-import org.springframework.util.StringUtils;
+package com.file.fileReader.model;
 
 import java.math.BigDecimal;
 
-/**
- * @author Gabriel Fernandes Garcia
- */
 public class Salesman {
 
     public static final String SALESMAN_CODE = "001";
@@ -47,15 +42,6 @@ public class Salesman {
 
     public void setTotalSalePrice(BigDecimal totalSalePrice) {
         this.totalSalePrice = totalSalePrice;
-    }
-
-    @Override
-    public String toString() {
-        return "Salesman{" +
-                "name='" + name + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", salary=" + salary +
-                '}';
     }
 
     public static class Builder {

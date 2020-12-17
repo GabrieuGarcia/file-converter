@@ -1,4 +1,4 @@
-package com.dat.datdoc;
+package com.file.fileReader;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

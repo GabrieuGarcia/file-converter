@@ -1,17 +1,12 @@
-package com.dat.datdoc.service;
+package com.file.fileReader.service;
 
-import com.dat.datdoc.model.Client;
-import com.dat.datdoc.model.DocumentRead;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.file.fileReader.model.Client;
 import org.springframework.stereotype.Service;
 
-/**
- * @author Gabriel Fernandes Garcia
- */
 @Service
 public class ClientService {
 
-    public Client setClient(String[] infos) {
+    public Client buildClient(String[] infos) {
         Client client = new Client();
         client.setName(infos[1]);
         client.setCnpj(infos[2]);
