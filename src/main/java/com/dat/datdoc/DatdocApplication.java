@@ -1,6 +1,5 @@
 package com.dat.datdoc;
 
-import com.dat.datdoc.model.DocumentRead;
 import com.dat.datdoc.service.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,19 +16,13 @@ public class DatdocApplication {
         SpringApplication.run(DatdocApplication.class, args);
 
         System.out.println("Starting the document read!");
-        DocumentProcessService documentProcessService = initializeDocumentProcessService();
-        documentProcessService.processDocs();
+        InputFileService inputFileService = buildDocumentProcessService();
+        inputFileService.processDocs();
         System.out.println("Process finished!");
     }
 
-    private static DocumentProcessService initializeDocumentProcessService() {
-        DocumentProcessService documentProcessService = new DocumentProcessService(
-                new DocumentReadService(),
-                new SalesmanService(new DocumentRead()),
-                new ClientService(),
-                new SaleService(new DocumentRead(), new SaleItemService()));
 
-        return documentProcessService;
+    private static InputFileService buildDocumentProcessService() {
+        return new InputFileService(new SalesmanService(), new ClientService(), new SaleService(new SaleItemService()));
     }
-
 }

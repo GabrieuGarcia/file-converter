@@ -11,14 +11,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientService {
 
-    @Autowired
-    private DocumentRead documentRead;
-
-    public void setClient(String[] infos) {
+    public Client setClient(String[] infos) {
         Client client = new Client();
         client.setName(infos[1]);
         client.setCnpj(infos[2]);
         client.setBusinessActivity(infos[3]);
-        documentRead.addClient(client);
+
+        return client;
     }
 }

@@ -1,5 +1,6 @@
 package com.dat.datdoc.service;
 
+import com.dat.datdoc.model.Sale;
 import com.dat.datdoc.model.SaleItem;
 import org.springframework.stereotype.Service;
 
@@ -14,39 +15,27 @@ import java.util.Objects;
 @Service
 public class SaleItemService {
 
-    private static final String ITENS_ON_SALE_SPLITTER = ",";
-    private static final String DETAIL_SALE_ITEM_SPLITTER = "-";
+    public List<SaleItem> buildSaleItemList(String[] infos) {
 
-    /**
-     * Method responsible for split the infos comming from the document.
-     *
-     * @param itensOnSale infos comming from the document.
-     *
-     * @return List of Sale Itens.
-     */
-    public List<SaleItem> splitItemsOnSale(String itensOnSale){
-        List<SaleItem> saleItemsList = new ArrayList<>();
+        List<SaleItem> saleItemList = new ArrayList<>();
 
-        if (Objects.nonNull(itensOnSale)) {
-            String[] itemListSplited = itensOnSale.split(ITENS_ON_SALE_SPLITTER);
+        for(String item : infos) {
 
-            for (String item : itemListSplited) {
-                saleItemsList.add(splitSaleItem(item));
+            String[] sItem = item.split(",");
+
+            for(String saleItem : sItem) {
+
+                String[] saleItemDivided = saleItem.split("-");
+
+                SaleItem saleItem1 = new SaleItem();
+                saleItem1.setId(saleItemDivided[0]);
+                saleItem1.setQuantity(Integer.parseInt(saleItemDivided[1]));
+                saleItem1.setItemPrice(new BigDecimal(saleItemDivided[2]));
+
+                saleItemList.add(saleItem1);
             }
-            return saleItemsList;
         }
-         return null;
+        return saleItemList;
     }
 
-    private SaleItem splitSaleItem(String itemListSplited) {
-        String[] detailItemSplited = itemListSplited.split(DETAIL_SALE_ITEM_SPLITTER);
-
-        SaleItem saleItem = new SaleItem();
-
-        saleItem.setId(detailItemSplited[0]);
-        saleItem.setItemQuantity(Integer.valueOf(detailItemSplited[1]));
-        saleItem.setItemPrice(new BigDecimal(detailItemSplited[2]));
-
-        return saleItem;
-    }
 }

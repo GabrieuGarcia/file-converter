@@ -1,5 +1,7 @@
 package com.dat.datdoc.model;
 
+import org.springframework.util.StringUtils;
+
 import java.math.BigDecimal;
 
 /**
@@ -12,6 +14,8 @@ public class Salesman {
     private String name;
     private String cpf;
     private BigDecimal salary;
+
+    private BigDecimal totalSalePrice;
 
     public String getName() {
         return name;
@@ -37,6 +41,14 @@ public class Salesman {
         this.salary = salary;
     }
 
+    public BigDecimal getTotalSalePrice() {
+        return totalSalePrice;
+    }
+
+    public void setTotalSalePrice(BigDecimal totalSalePrice) {
+        this.totalSalePrice = totalSalePrice;
+    }
+
     @Override
     public String toString() {
         return "Salesman{" +
@@ -44,5 +56,37 @@ public class Salesman {
                 ", cpf='" + cpf + '\'' +
                 ", salary=" + salary +
                 '}';
+    }
+
+    public static class Builder {
+
+        private String name;
+        private String cpf;
+        private BigDecimal salary;
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder cpf(String cpf) {
+            this.cpf = cpf;
+            return this;
+        }
+
+        public Builder salary(String salary) {
+            this.salary = new BigDecimal(salary);
+            return this;
+        }
+
+        public Salesman build() {
+            Salesman salesman = new Salesman();
+            salesman.name = this.name;
+            salesman.cpf = this.cpf;
+            salesman.salary = this.salary;
+
+            return salesman;
+        }
+
     }
 }
