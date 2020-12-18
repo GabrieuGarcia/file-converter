@@ -13,6 +13,10 @@ import java.util.Scanner;
 @Service
 public class InputFileService {
 
+    private static final String FILE_IN = System.getProperty("user.home") + "/data/in";
+    private static final String SPLIT_CHARACTER = "�";
+
+
     private List<Salesman> salesmanList = new ArrayList<>();
     private List<Sale> saleList = new ArrayList<>();
     private List<Client> clientList = new ArrayList<>();
@@ -32,8 +36,8 @@ public class InputFileService {
 
     public void processFiles() throws IOException {
 
-        String docPath = System.getProperty("user.home") + "/data/in";
-        File[] files = new File(docPath).listFiles();
+        String filePath = FILE_IN;
+        File[] files = new File(filePath).listFiles();
         buildBufferedReader(files);
     }
 
@@ -50,7 +54,7 @@ public class InputFileService {
 
         while (fileScanner.hasNextLine()) {
             String line = fileScanner.nextLine();
-            String[] fields = line.split("�");
+            String[] fields = line.split(SPLIT_CHARACTER);
 
             if(fields[0].equals(Salesman.SALESMAN_CODE)){
                 Salesman salesman = salesmanService.buildSalesmanList(fields);

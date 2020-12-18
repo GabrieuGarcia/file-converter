@@ -13,6 +13,12 @@ import java.util.List;
 @Service
 public class OutputFileService {
 
+    private static final String QUANTITY_CLIENTS = "Quantidade de clientes: ";
+    private static final String QUANTITY_SALESMAN = "Quantidade de vendedores: ";
+    private static final String ID_HIGHEST_SCORE = "Id da venda mais cara: ";
+    private static final String WORST_SALESMAN = "Pior vendedor: ";
+    private static final String FILE_OUT = System.getProperty("user.home")+ File.separator+"data"+File.separator+"out"+File.separator+"out_";
+
     private final SalesmanService salesmanService;
     private final SaleService saleService;
 
@@ -33,12 +39,17 @@ public class OutputFileService {
 
     private void writeOutputFile(String numberOfClients, String numberOfSalesman, String highestSale, String worstSalesman, String fileName) throws FileNotFoundException {
 
-        PrintWriter writer = new PrintWriter(System.getProperty("user.home")+ File.separator+"data"+File.separator+"out"+File.separator+"out_"+ fileName);
+        PrintWriter writer = new PrintWriter(FILE_OUT+fileName);
 
-        writer.println("Quantidade de clientes: " + numberOfClients);
-        writer.println("Quantidade de vendedores: " + numberOfSalesman);
-        writer.println("Id da venda mais cara: " + highestSale);
-        writer.println("Pior vendedor: " + worstSalesman);
+        writer.println(QUANTITY_CLIENTS + numberOfClients);
+        writer.println(QUANTITY_SALESMAN + numberOfSalesman);
+        writer.println(ID_HIGHEST_SCORE + highestSale);
+        writer.println(WORST_SALESMAN + worstSalesman);
         writer.close();
+
+        System.out.println(QUANTITY_CLIENTS + numberOfClients +
+                "\n" +QUANTITY_SALESMAN + numberOfSalesman +
+                "\n" +ID_HIGHEST_SCORE + highestSale +
+                "\n" +WORST_SALESMAN + worstSalesman);
     }
 }
