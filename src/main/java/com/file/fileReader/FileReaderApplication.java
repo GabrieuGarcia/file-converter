@@ -13,12 +13,16 @@ public class FileReaderApplication {
         SpringApplication.run(FileReaderApplication.class, args);
 
         System.out.println("Starting the file read!");
-        InputFileService inputFileService = buildDocumentProcessService();
+        InputFileService inputFileService = buildInputFileService();
         inputFileService.processFiles();
         System.out.println("Process finished!");
     }
 
-    private static InputFileService buildDocumentProcessService() {
-        return new InputFileService(new SalesmanService(), new ClientService(), new SaleService(new SaleItemService()));
+    private static InputFileService buildInputFileService() {
+        return new InputFileService(
+                new SalesmanService(),
+                new ClientService(),
+                new SaleService(new SaleItemService()),
+                new OutputFileService(new SalesmanService(),new SaleService(new SaleItemService())));
     }
 }

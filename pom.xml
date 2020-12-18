@@ -8,13 +8,12 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.3.0.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.dat</groupId>
-    <artifactId>datdoc</artifactId>
+    <groupId>com.file</groupId>
+    <artifactId>filereader</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>datdoc</name>
+    <name>fileReader</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

@@ -21,11 +21,13 @@ public class InputFileService {
     private final SalesmanService salesmanService;
     private final ClientService clientService;
     private final SaleService saleService;
+    private final OutputFileService outputFileService;
 
-    public InputFileService(SalesmanService salesmanService, ClientService clientService, SaleService saleService) {
+    public InputFileService(SalesmanService salesmanService, ClientService clientService, SaleService saleService, OutputFileService outputFileService) {
         this.salesmanService = salesmanService;
         this.clientService = clientService;
         this.saleService = saleService;
+        this.outputFileService = outputFileService;
     }
 
     public void processFiles() throws IOException {
@@ -63,27 +65,6 @@ public class InputFileService {
                 saleList.add(sale);
             }
         }
-        buildOutputFile(salesmanList, saleList, clientList, fileName);
-    }
-
-    public void buildOutputFile(List<Salesman> salesmanList, List<Sale> saleList, List<Client> clientList, String fileName) throws FileNotFoundException {
-
-        String numberOfClients = String.valueOf(clientList.size());
-        String numberOfSalesman = String.valueOf(salesmanList.size());
-        String highestSaleId = saleService.getIdHighestSale(saleList);
-        String worstSalesman = salesmanService.getWorstSalesman(saleList, salesmanList);
-
-        writeOutputFile(numberOfClients, numberOfSalesman, highestSaleId, worstSalesman, fileName);
-    }
-
-    private void writeOutputFile(String numberOfClients, String numberOfSalesman, String highestSale, String worstSalesman, String fileName) throws FileNotFoundException {
-
-        PrintWriter writer = new PrintWriter(System.getProperty("user.home")+ File.separator+"data"+File.separator+"out"+File.separator+"out_"+ fileName);
-
-        writer.println("Quantidade de clientes: " + numberOfClients);
-        writer.println("Quantidade de vendedores: " + numberOfSalesman);
-        writer.println("Id da venda mais cara: " + highestSale);
-        writer.println("Pior vendedor: " + worstSalesman);
-        writer.close();
+        outputFileService.buildOutputFile(salesmanList, saleList, clientList, fileName);
     }
 }
