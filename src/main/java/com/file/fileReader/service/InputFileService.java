@@ -16,7 +16,6 @@ public class InputFileService {
     private static final String FILE_IN = System.getProperty("user.home") + "/data/in";
     private static final String SPLIT_CHARACTER = "�";
 
-
     private List<Salesman> salesmanList = new ArrayList<>();
     private List<Sale> saleList = new ArrayList<>();
     private List<Client> clientList = new ArrayList<>();
